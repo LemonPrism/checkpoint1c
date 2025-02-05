@@ -4,10 +4,14 @@ boolean day, phase;
 
 void setup() {
   size ( 800, 800);
+
+  //Sun and Moon Animation ///////////////////////////////////
   sunY= 850;
   moonY=700;
   day=true;
   phase=true;
+  ////////////////////////////////////////////////////////////\
+ 
 }
 
 
@@ -15,19 +19,12 @@ void setup() {
 void draw() {
 
 
-
+  // Sun and Moon Animation //////////////////////////////////
   if (sunY < 150) {
-    //background(#243447);
+
     day=false;
   }
 
-
-  //sunY= 900;
-  //} else {
-  //  background(#d4ebf2);
-
-  //  sunY= sunY+5;
-  //}
   if (moonY < 150) {
 
     day=true;
@@ -67,7 +64,7 @@ void draw() {
 
 
 
-
+  ////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -76,6 +73,11 @@ void draw() {
   //sun
   fill(#FFCC33);
   circle ( 150, sunY, 100);
+
+
+  //mountains
+
+
 
 
 
@@ -94,38 +96,8 @@ void draw() {
   rect(-10, 650, width*2, height/5); // Grass
 
 
-  //house
-
-  //base
-  fill(#99cfe0);
-  square( 500, 450, 200);
-
-
-  //roof
-  fill ( #D3D3D3);
-  triangle(450, 450, 600, 350, 750, 450);
-
-  //door
-  fill(#00008B);
-  rect(550, 600, 30, 50);
-
-  //knob
-  fill(255);
-  circle(570, 630, 5);
-
-  //windows
-
-  if (phase==true) {
-    fill(255);
-  } else {
-    fill(255, 200, 0  );
-  }
-  square (600, 500, 50);
-
-  stroke(5);
-  line ( 625, 500, 625, 550);
-  stroke(5);
-  line ( 600, 525, 650, 525);
+ 
+house ( 500 , 650 );
 
   //Trees
   fill ( #806517);
@@ -142,4 +114,68 @@ void draw() {
     circle (i, 500, 100);
     i = i + 5;
   }
+}
+
+
+void house(float x, float y) {
+
+
+  pushMatrix();
+
+  translate(x, y);
+  scale (random(0.2,0.4));
+ 
+  base();
+  door();
+  roof();
+  window();
+
+
+
+
+
+  popMatrix();
+}
+
+void base() {
+  fill(#99cfe0);
+  square( 0, 0, 200);
+}
+
+
+void door () {
+
+  fill(#00008B);
+  rect(50, 150, 30, 50);
+  //knob
+  fill(255);
+  circle(70, 180, 5);
+}
+
+void roof() {
+
+
+  //roof
+  fill ( #D3D3D3);
+  triangle(-50, 0, 100, -100, 250, 0);
+}
+
+
+
+void window() {
+
+
+  //windows
+
+  if (phase==true) {
+    fill(255);
+  } else {
+    fill(255, 200, 0  );
+  }
+  square (100, 50, 50);
+
+  stroke(5);
+  line ( 125, 50, 125, 100);
+  stroke(5);
+  line ( 100, 75, 150, 75);
 }
